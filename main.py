@@ -9,12 +9,6 @@ def health_check():
     return Response(status_code=200)
 
 
-
-
-
-
-
-
 def run() -> None:
     uvicorn.run(
         app,
