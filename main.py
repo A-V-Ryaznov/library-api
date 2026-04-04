@@ -1,13 +1,33 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import Response
+from pydantic import BaseModel
+from datetime import date
 import uvicorn
 
 app = FastAPI()
+
+
+"""
+BOOKS
+
+name
+author
+year
+create_at 
+warranty
+borrowed_at
+
+"""
 
 BOOKS = {
     "Pomadoro": ["Frank", "1990"],
     "Dune": ["Herbert", "1950"]
 }
+
+class OperationRequests(BaseModel):
+    book_name: str
+    author: str
+    year: str
 
 
 @app.get("/health")
@@ -35,30 +55,20 @@ def get_book(book_name: str | None = None):
     return BOOKS[book_name]
 
 @app.post("/book/{name}")
-def add_book(name: str, author: str, year: str):
-    
+def create_book(name: str, author: str, year: str):
     if name in BOOKS:
         raise HTTPException(
-            status_code= 404,
-            detail=f"Book {name} already exiest"
+            status_code=409,
+            detail=f"Book '{name}' already exists"
         )
-    
+
     BOOKS[name] = [author, year]
+    #BOOKS[name] = initial_book
 
     return {
-        "name": name,
+        "message": f"Book '{name}' was created",
+        "book": name,
         "author": author,
         "year": year
     }
 
-
-def run() -> None:
-    uvicorn.run(
-        app,
-        host="127.0.0.1",
-        port=8282,
-        log_level="trace"
-    )
-
-if __name__ == "__main__":
-    run()
