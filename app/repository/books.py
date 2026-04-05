@@ -1,8 +1,10 @@
+from typing import Final
+
 from decimal import Decimal
 
-BOOKS: dict[str, str, str, Decimal] = {
-    "Pomadoro": ["Frank", "1990", 500.82],
-    "Dune": ["Herbert", "1950", 300.64]
+BOOKS: Final[dict[str, list[str, str, Decimal]]] = {
+    "Pomadoro": ["Frank", "1990", Decimal("500.82")],
+    "Dune": ["Herbert", "1950", Decimal("300.64")]
 }
 
 def get_all_books() -> dict[str, str, str, Decimal]:
