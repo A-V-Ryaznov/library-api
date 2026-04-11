@@ -4,7 +4,7 @@ from sqlalchemy import TIMESTAMP, VARCHAR, BigInteger, Boolean, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from library_api.custom_types import UserId
-from library_api.db.models.books import Book
+from library_api.db.models.book import Book
 
 from .base import Base
 

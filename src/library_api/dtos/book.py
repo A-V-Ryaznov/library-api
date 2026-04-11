@@ -12,6 +12,7 @@ class BookDTO:
     author: str
     year: str
     cost: Decimal
+    tags: list[str] | None
 
 
 @dataclass(frozen=True, slots=True)
@@ -20,3 +21,4 @@ class NewBookDTO:
     author: str
     year: int
     cost: Decimal
+    tags: list[str] | None
