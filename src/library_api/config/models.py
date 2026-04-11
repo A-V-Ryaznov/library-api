@@ -1,7 +1,5 @@
 from dataclasses import dataclass
 
-from pydantic import HttpUrl
-
 
 @dataclass(frozen=True, slots=True)
 class WebConfig:

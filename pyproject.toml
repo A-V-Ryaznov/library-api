@@ -19,3 +19,9 @@ dependencies = [
 
 [project.scripts]
 api = "library_api.main.web:run"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.10",
+]
+

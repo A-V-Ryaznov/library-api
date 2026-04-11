@@ -1,6 +1,5 @@
 from typing import NewType
 
-
 BookId = NewType("BookId", int)
 UserId = NewType("UserId", int)
 OfficeId = NewType("OfficeId", int)

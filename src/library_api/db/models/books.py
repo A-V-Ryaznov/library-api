@@ -1,11 +1,13 @@
+from decimal import Decimal
+
+from sqlalchemy import DECIMAL, JSON, VARCHAR, BigInteger
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from library_api.db.models.cabinets import Cabinet
 from library_api.db.models.users import User
 from library_api.types import BookId
-from decimal import Decimal
 
 from .base import Base
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import BigInteger, VARCHAR, DECIMAL, JSON
 
 
 class Book(Base):
@@ -19,13 +21,9 @@ class Book(Base):
     tags: Mapped[list[str] | None] = mapped_column(JSON, nullable=True)
 
     users: Mapped[list[User]] = relationship(
-        "User",
-        back_populates="books",
-        secondary="user_books"
+        "User", back_populates="books", secondary="user_books"
     )
 
     cabinet: Mapped[list[Cabinet]] = relationship(
-        "Cabinet",
-        back_populates="cabinets",
-        secondary="book_cabinets"
+        "Cabinet", back_populates="cabinets", secondary="book_cabinets"
     )

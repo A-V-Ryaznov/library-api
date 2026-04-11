@@ -1,18 +1,15 @@
 import asyncio
 import sys
-import uvicorn
-
 from contextlib import asynccontextmanager, suppress
 
-from fastapi import FastAPI
-
+import uvicorn
 from dishka import AsyncContainer
 from dishka.integrations.fastapi import setup_dishka
+from fastapi import FastAPI
 
 from library_api.config.parsers import get_config
 from library_api.di import create_container
 from library_api.presentation.web.v1.routes import main_router
-
 
 config = get_config()
 
@@ -49,7 +46,7 @@ def run() -> None:
             host=config.web.host,
             port=config.web.port,
             proxy_headers=True,
-            log_level="trace"
+            log_level="trace",
         )
 
 

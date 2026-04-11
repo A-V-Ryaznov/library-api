@@ -1,8 +1,9 @@
+from sqlalchemy import VARCHAR, BigInteger
+from sqlalchemy.orm import Mapped, mapped_column
+
 from library_api.types import OfficeId
 
 from .base import Base
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import BigInteger, VARCHAR
 
 
 class Office(Base):
