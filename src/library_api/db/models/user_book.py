@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import TIMESTAMP, BigInteger, Boolean, ForeignKey, func
 from sqlalchemy.orm import Mapped, mapped_column
 
-from library_api.types import BookId, UserBookId, UserId
+from library_api.custom_types import BookId, UserBookId, UserId
 
 from .base import Base
 

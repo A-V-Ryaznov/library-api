@@ -1,8 +1,7 @@
+from library_api.custom_types import BookId
 from library_api.db.temp import books
-
 from library_api.dtos.book import BookDTO, NewBookDTO
 from library_api.helpers import generate_uuid
-from library_api.types import BookId
 
 
 class CreateNewBookInteractor:

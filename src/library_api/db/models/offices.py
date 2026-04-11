@@ -1,7 +1,7 @@
 from sqlalchemy import VARCHAR, BigInteger
 from sqlalchemy.orm import Mapped, mapped_column
 
-from library_api.types import OfficeId
+from library_api.custom_types import OfficeId
 
 from .base import Base
 

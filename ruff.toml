@@ -7,7 +7,7 @@ preview = true
 line-length = 90
 indent-width = 4
 
-target-version = "py311"
+target-version = "py312"
 
 include = [
     "src/library_api/**/*.py",

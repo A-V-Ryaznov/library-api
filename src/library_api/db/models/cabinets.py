@@ -1,10 +1,10 @@
 from sqlalchemy import VARCHAR, BigInteger, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from library_api.custom_types import CabinetId, OfficeId, UserId
 from library_api.db.models.books import Book
 from library_api.db.models.offices import Office
 from library_api.db.models.users import User
-from library_api.types import CabinetId, OfficeId, UserId
 
 from .base import Base
 

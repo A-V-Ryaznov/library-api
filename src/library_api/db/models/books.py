@@ -3,9 +3,9 @@ from decimal import Decimal
 from sqlalchemy import DECIMAL, JSON, VARCHAR, BigInteger
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from library_api.custom_types import BookId
 from library_api.db.models.cabinets import Cabinet
 from library_api.db.models.users import User
-from library_api.types import BookId
 
 from .base import Base
 

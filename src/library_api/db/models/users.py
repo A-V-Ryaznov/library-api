@@ -3,8 +3,8 @@ from datetime import datetime
 from sqlalchemy import TIMESTAMP, VARCHAR, BigInteger, Boolean, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from library_api.custom_types import UserId
 from library_api.db.models.books import Book
-from library_api.types import UserId
 
 from .base import Base
 
