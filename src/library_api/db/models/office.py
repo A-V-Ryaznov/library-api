@@ -17,6 +17,6 @@ class Office(Base):
     id: Mapped[OfficeId] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     adrres: Mapped[str] = mapped_column(VARCHAR(255), nullable=False)
 
-    cabinet: Mapped["Cabinet"] = relationship(
+    cabinets: Mapped["Cabinet"] = relationship(
         "Cabinet", back_populates="office"
     )

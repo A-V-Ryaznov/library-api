@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 
-from library_api.custom_types import OfficeId, UserId
+from library_api.custom_types import CabinetId, OfficeId, UserId
 
 
 @dataclass(frozen=True, slots=True)
 class CabinetDTO:
-    id: OfficeId
+    id: CabinetId
 
     name: str
     owner_id: UserId

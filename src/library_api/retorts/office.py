@@ -10,7 +10,7 @@ exec_type_checking(office)
 office_to_dto = get_converter(office.Office, OfficeDTO)
 new_office_to_orm = get_converter(
     NewOfficeDTO,
-    office.Cabinet,
+    office.Office,
     recipe=[
         name_mapping(skip=["id"]),
         allow_unlinked_optional()
