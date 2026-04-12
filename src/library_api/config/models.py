@@ -7,7 +7,7 @@ from pydantic import PostgresDsn, SecretStr
 class DatabaseConfig:
     host: str
     port: int
-    user: str
+    username: str
     path: str
 
     password: SecretStr

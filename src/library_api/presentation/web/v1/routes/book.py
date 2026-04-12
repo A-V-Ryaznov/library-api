@@ -12,24 +12,24 @@ router = APIRouter()
 
 @router.get("/books", response_model=tuple[BookDTO])
 @inject
-def get_all_books(request: Request, interactor: FromDishka[GetAllBooksInteractor]):
-    return interactor()
+async def get_all_books(request: Request, interactor: FromDishka[GetAllBooksInteractor]):
+    return await interactor()
 
 
 @router.get("/books/{name}", response_model=BookDTO)
 @inject
-def get_book(
+async def get_book(
     request: Request, name: str, interactor: FromDishka[GetBookByNameInteractor]
 ):
     try:
-        return interactor(name)
+        return await interactor(name)
     except BookNotFound:
         raise HTTPException(status_code=404, detail=f"Book '{name}' not found")
 
 
 @router.post("/book", response_model=BookDTO)
 @inject
-def create_book(
+async def create_book(
     request: Request, body: NewBookDTO, interactor: FromDishka[CreateNewBookInteractor]
 ):
-    return interactor(body)
+    return await interactor(body)

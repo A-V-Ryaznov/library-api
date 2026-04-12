@@ -16,10 +16,10 @@ def get_config(path: Path | None = None) -> Config:
         ),
         db=DatabaseConfig(
             path=env.str("POSTGRES_PATH"),
-            user=env.str("POSTGRES_USER"),
+            username=env.str("POSTGRES_USER"),
             password=SecretStr(env.str("POSTGRES_USER")),
             host=env.str("POSTGRES_HOST"),
-            port=env.str("POSTGRES_PORT"),
+            port=env.int("POSTGRES_PORT"),
             scheme=env.str("POSTGRES_SCHEME")
         )
     )

@@ -40,5 +40,6 @@ class DatabaseProvide(Provider):
         BookRepository,
         CabinetRepository,
         OfficeRepository,
-        UserRepository
+        UserRepository,
+        scope=Scope.REQUEST
     )
