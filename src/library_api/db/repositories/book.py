@@ -1,11 +1,11 @@
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from library_api.custom_types import BookId
 from library_api.db.models.book import Book
 from library_api.dtos.book import BookDTO, NewBookDTO
 from library_api.exceptions.book import BookNotFound
-from library_api.retorts.book import new_book_to_orm, book_to_dto
+from library_api.retorts.book import book_to_dto, new_book_to_orm
+
 
 class BookRepository:
     def __init__(self, session: AsyncSession) -> None:
@@ -16,25 +16,23 @@ class BookRepository:
         self._session.add(model)
         await self._session.flush([model])
         return book_to_dto(model)
-    
-    async def get_by_id(self, id: BookId) -> BookDTO:
+
+    async def get_by_name(self, name: str) -> BookDTO:
         result = (
             await self._session.execute(
-                select(Book).where(Book.id == id)
+                select(Book).where(Book.name == name)
             )
         ).scalar()
 
         if result is None:
             raise BookNotFound
         return book_to_dto(result)
-    
-    async def get_all_books(self) -> BookDTO:
+
+    async def get_all_books(self) -> list[BookDTO]:
         result = (
             await self._session.execute(
                 select(Book)
             )
         ).scalars().all()
 
-        if result is None:
-            raise BookNotFound
-        return book_to_dto(result)
+        return [book_to_dto(book) for book in result]

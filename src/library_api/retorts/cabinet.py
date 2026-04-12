@@ -2,8 +2,8 @@ from adaptix import name_mapping
 from adaptix.conversion import allow_unlinked_optional, get_converter
 from adaptix.type_tools import exec_type_checking
 
-from library_api.dtos.cabinet import CabinetDTO, NewCabinetDTO
 from library_api.db.models import cabinet
+from library_api.dtos.cabinet import CabinetDTO, NewCabinetDTO
 
 exec_type_checking(cabinet)
 

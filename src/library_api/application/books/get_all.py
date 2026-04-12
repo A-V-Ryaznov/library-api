@@ -1,7 +1,12 @@
-from library_api.db.temp import books
+from library_api.db.repositories.book import BookRepository
 from library_api.dtos.book import BookDTO
 
 
 class GetAllBooksInteractor:
-    def __call__(self) -> tuple[BookDTO]:
-        return tuple(books.values())
+    def __init__(self, books_repostiory: BookRepository):
+        self._books_repostiory = books_repostiory
+
+    async def __call__(self) -> BookDTO:
+        book = await self._books_repostiory.get_all_books()
+
+        return book

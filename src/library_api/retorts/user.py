@@ -2,8 +2,8 @@ from adaptix import name_mapping
 from adaptix.conversion import allow_unlinked_optional, get_converter
 from adaptix.type_tools import exec_type_checking
 
-from library_api.dtos.user import UserDTO, NewUserDTO
 from library_api.db.models import user
+from library_api.dtos.user import NewUserDTO, UserDTO
 
 exec_type_checking(user)
 

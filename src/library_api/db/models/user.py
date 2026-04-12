@@ -1,13 +1,15 @@
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import TIMESTAMP, VARCHAR, BigInteger, Boolean, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from library_api.custom_types import UserId
-from library_api.db.models.book import Book
 
 from .base import Base
 
+if TYPE_CHECKING:
+    from library_api.db.models.book import Book
 
 class User(Base):
     __tablename__ = "users"
@@ -22,6 +24,6 @@ class User(Base):
         Boolean, server_default="False", nullable=False
     )
 
-    books: Mapped[list[Book]] = relationship(
+    books: Mapped["list[Book]"] = relationship(
         "Book", back_populates="users", secondary="user_books"
     )
