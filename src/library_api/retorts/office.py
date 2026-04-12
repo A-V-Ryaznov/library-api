@@ -7,8 +7,8 @@ from library_api.db.models import office
 
 exec_type_checking(office)
 
-book_to_dto = get_converter(office.Office, OfficeDTO)
-new_book_to_orm = get_converter(
+office_to_dto = get_converter(office.Office, OfficeDTO)
+new_office_to_orm = get_converter(
     NewOfficeDTO,
     office.Cabinet,
     recipe=[

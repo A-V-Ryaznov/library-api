@@ -7,8 +7,8 @@ from library_api.db.models import user
 
 exec_type_checking(user)
 
-book_to_dto = get_converter(user.User, UserDTO)
-new_book_to_orm = get_converter(
+user_to_dto = get_converter(user.User, UserDTO)
+new_user_to_orm = get_converter(
     NewUserDTO,
     user.User,
     recipe=[

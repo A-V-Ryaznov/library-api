@@ -7,8 +7,8 @@ from library_api.db.models import cabinet
 
 exec_type_checking(cabinet)
 
-book_to_dto = get_converter(cabinet.Cabinet, CabinetDTO)
-new_book_to_orm = get_converter(
+cabinet_to_dto = get_converter(cabinet.Cabinet, CabinetDTO)
+new_cabinet_to_orm = get_converter(
     NewCabinetDTO,
     cabinet.Cabinet,
     recipe=[
