@@ -14,8 +14,8 @@ class BookCabinet(Base):
     id: Mapped[BookCabinetId] = mapped_column(
         BigInteger, primary_key=True, autoincrement=True
     )
-    book_id: Mapped[BookId] = mapped_column(BigInteger, ForeignKey("book.id"))
-    cabinet_id: Mapped[CabinetId] = mapped_column(BigInteger, ForeignKey("cabinet.id"))
+    book_id: Mapped[BookId] = mapped_column(BigInteger, ForeignKey("books.id"))
+    cabinet_id: Mapped[CabinetId] = mapped_column(BigInteger, ForeignKey("cabinets.id"))
     is_exist: Mapped[bool] = mapped_column(Boolean, server_default="True", nullable=False)
     create_at: Mapped[datetime] = mapped_column(
         TIMESTAMP(timezone=True), server_default=func.now(), nullable=False

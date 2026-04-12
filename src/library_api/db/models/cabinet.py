@@ -20,9 +20,9 @@ class Cabinet(Base):
         BigInteger, primary_key=True, autoincrement=True
     )
     name: Mapped[str] = mapped_column(VARCHAR(255), nullable=False)
-    owner_id: Mapped[UserId] = mapped_column(BigInteger, ForeignKey("users.id"))
-    office_id: Mapped[OfficeId] = mapped_column(BigInteger, ForeignKey("offices.id"))
-    number: Mapped[str] = mapped_column(VARCHAR(10))
+    owner_id: Mapped[UserId] = mapped_column(BigInteger, ForeignKey("users.id"), nullable=False)
+    office_id: Mapped[OfficeId] = mapped_column(BigInteger, ForeignKey("offices.id"), nullable=False)
+    number: Mapped[str] = mapped_column(VARCHAR(10), nullable=False)
 
     user: Mapped["User"] = relationship(
         "User", back_populates="cabinet", foreign_keys=[owner_id]

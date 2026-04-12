@@ -9,7 +9,7 @@ from library_api.custom_types import UserId
 from .base import Base
 
 if TYPE_CHECKING:
-    from library_api.db.models.book import Book
+    from library_api.db.models import Book, Cabinet
 
 class User(Base):
     __tablename__ = "users"
@@ -26,4 +26,7 @@ class User(Base):
 
     books: Mapped["list[Book]"] = relationship(
         "Book", back_populates="users", secondary="user_books"
+    )
+    cabinet: Mapped["Cabinet"] = relationship(
+        "Cabinet", back_populates="user",
     )

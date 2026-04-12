@@ -19,6 +19,6 @@ class BookDTO:
 class NewBookDTO:
     name: str
     author: str
-    year: int
+    year: str
     cost: Decimal
     tags: list[str] | None
