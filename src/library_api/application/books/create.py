@@ -1,17 +1,15 @@
-from library_api.dtos.book import NewBookDTO, BookDTO
-from library_api.db.temp import books
-from library_api.types import BookId
-from library_api.helpers import generate_uuid
+from library_api.db.repositories.book import BookRepository
+from library_api.dtos.book import BookDTO, NewBookDTO
+from library_api.interface import DBSession
 
 
 class CreateNewBookInteractor:
-    def __call__(self, data: NewBookDTO) -> None:
-        book = BookDTO(
-            id=BookId(generate_uuid()),
-            name=data.name,
-            author=data.author,
-            year=data.year,
-            cost=data.cost
-        )
-        books[data.name] = book
+    def __init__(self, books_repostiory: BookRepository, session: DBSession):
+        self._books_repostiory = books_repostiory
+        self._session = session
+
+    async def __call__(self, data: NewBookDTO) -> BookDTO:
+        book = await self._books_repostiory.create(data)
+        await self._session.commit()
+
         return book

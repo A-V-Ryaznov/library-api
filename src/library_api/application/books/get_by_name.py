@@ -1,10 +1,12 @@
+from library_api.db.repositories.book import BookRepository
 from library_api.dtos.book import BookDTO
-from library_api.db.temp import books
-from library_api.exceptions.book import BookNotFound
 
 
 class GetBookByNameInteractor:
-    def __call__(self, name: str) -> BookDTO:
-        if book := books.get(name, None):
-            return book
-        raise BookNotFound
+    def __init__(self, books_repostiory: BookRepository):
+        self._books_repostiory = books_repostiory
+
+    async def __call__(self, name: str) -> BookDTO:
+        book = await self._books_repostiory.get_by_name(name)
+
+        return book

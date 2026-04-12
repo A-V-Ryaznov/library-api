@@ -9,6 +9,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "adaptix>=3.0.0b12",
+    "alembic>=1.18.4",
+    "asyncpg>=0.31.0",
     "dishka>=1.9.1",
     "environs>=15.0.0",
     "fastapi[standart]>=0.135.2",
@@ -18,3 +21,18 @@ dependencies = [
 
 [project.scripts]
 api = "library_api.main.web:run"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.20.0",
+    "ruff>=0.15.10",
+]
+
+[tool.mypy]
+files = ["src/library_api"]
+strict = true
+python_version = "3.12"
+strict_bytes = true
+local_partial_types = true
+plugins = ["pydantic.mypy"]
+
