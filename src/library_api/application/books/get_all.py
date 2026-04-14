@@ -6,7 +6,7 @@ class GetAllBooksInteractor:
     def __init__(self, books_repostiory: BookRepository):
         self._books_repostiory = books_repostiory
 
-    async def __call__(self) -> BookDTO:
+    async def __call__(self) -> list[BookDTO]:
         book = await self._books_repostiory.get_all_books()
 
         return book

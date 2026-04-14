@@ -10,7 +10,7 @@ from library_api.exceptions.book import BookNotFound
 router = APIRouter()
 
 
-@router.get("/books", response_model=tuple[BookDTO])
+@router.get("/books", response_model=list[BookDTO])
 @inject
 async def get_all_books(request: Request, interactor: FromDishka[GetAllBooksInteractor]):
     return await interactor()

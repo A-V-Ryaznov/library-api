@@ -1,11 +1,14 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+import logging
+
 from library_api.db.models.book import Book
 from library_api.dtos.book import BookDTO, NewBookDTO
 from library_api.exceptions.book import BookNotFound
 from library_api.retorts.book import book_to_dto, new_book_to_orm
 
+logger = logging.getLogger(__name__)
 
 class BookRepository:
     def __init__(self, session: AsyncSession) -> None:
@@ -26,6 +29,8 @@ class BookRepository:
 
         if result is None:
             raise BookNotFound
+        
+
         return book_to_dto(result)
 
     async def get_all_books(self) -> list[BookDTO]:

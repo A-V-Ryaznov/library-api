@@ -1,0 +1,43 @@
+version: 1
+disable_existing_loggers: True
+
+formatters:
+  default:
+    format: '#%(levelname)-8s %(name)s:%(funcName)s - %(message)s'
+
+  formatter_1:
+    format: '[%(asctime)s] #%(levelname)-8s %(filename)s:%(lineno)d - %(name)s:%(funcName)s - %(message)s'
+
+filters:
+  critical_filter:
+    (): library_api.log.log_filters.CriticalLogFilter
+
+  error_filter:
+    (): library_api.log.log_filters.ErrorLogFilter
+
+  debug_warning_filter:
+    (): library_api.log.log_filters.DebugWarningLogFilter
+
+handlers:
+  default:
+    class: logging.StreamHandler
+    formatter: default
+
+  stderr:
+    class: logging.StreamHandler
+    formatter: formatter_1
+
+  stdout:
+    class: logging.StreamHandler
+    formatter: formatter_1
+    filters: [debug_warning_filter]
+    stream: ext://sys.stdout
+
+loggers:
+  library_api.db.repositories.book:
+    level: DEBUG
+    handlers: [stderr]
+
+root:
+  formatter: default
+  handlers: [default]
