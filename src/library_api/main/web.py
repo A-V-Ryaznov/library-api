@@ -11,7 +11,15 @@ from library_api.config.parsers import get_config
 from library_api.di import create_container
 from library_api.presentation.web.v1.routes import main_router
 
+import logging.config
+import yaml
+
 config = get_config()
+
+with open("logging_config.yaml", "rt") as f:
+    log_config = yaml.safe_load(f.read())
+
+logging.config.dictConfig(log_config)
 
 
 @asynccontextmanager
