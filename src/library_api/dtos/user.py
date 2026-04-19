@@ -10,6 +10,8 @@ class UserDTO:
 
     firs_name: str
     last_name: str
+    email: str
+    password: str
     is_admin: bool
     create_at: datetime
 
@@ -18,4 +20,6 @@ class UserDTO:
 class NewUserDTO:
     firs_name: str
     last_name: str
+    email: str
+    password: str
     is_admin: bool

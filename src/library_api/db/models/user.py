@@ -17,6 +17,8 @@ class User(Base):
     id: Mapped[UserId] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     firs_name: Mapped[str] = mapped_column(VARCHAR(255), nullable=False)
     last_name: Mapped[str] = mapped_column(VARCHAR(255), nullable=False)
+    email: Mapped[str] = mapped_column(VARCHAR(255), nullable=False, unique=True)
+    password: Mapped[str] = mapped_column(VARCHAR(255), nullable=False)
     create_at: Mapped[datetime] = mapped_column(
         TIMESTAMP(timezone=True), server_default=func.now(), nullable=False
     )
