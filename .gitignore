@@ -10,3 +10,6 @@ wheels/
 .venv
 .env
 .vscode/
+
+# auth
+src/library_api/security/certs/

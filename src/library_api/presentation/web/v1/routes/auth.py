@@ -45,3 +45,12 @@ def basic_auth(
         "message": f"Hi {username}",
         "username": username
     }
+
+@router.get("/jwt-auth")
+def basic_auth( 
+    username: str = Depends(check_auth_user)
+):
+    return{
+        "message": f"Hi {username}",
+        "username": username
+    }
