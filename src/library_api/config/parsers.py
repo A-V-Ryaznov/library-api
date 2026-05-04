@@ -5,7 +5,7 @@ from pydantic import SecretStr
 
 from .models import Config, DatabaseConfig, WebConfig
 
-
+ 
 def get_config(path: Path | None = None) -> Config:
     env = Env()
     env.read_env(path)

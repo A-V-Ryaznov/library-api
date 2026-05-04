@@ -1,6 +1,9 @@
 from dataclasses import dataclass
+from pathlib import Path
 
-from pydantic import PostgresDsn, SecretStr
+from pydantic import PostgresDsn, SecretStr, BaseModel
+
+BASE_DIR = Path(__file__).parent.parent
 
 
 @dataclass(frozen=True, slots=True)
@@ -31,7 +34,18 @@ class WebConfig:
     port: int = 8282
 
 
+
+class AuthJWTConfig(BaseModel):
+    private_key_path: Path = BASE_DIR / "security" /  "certs" / "jwt-private.pem"
+    public_key_path: Path = BASE_DIR / "security" /  "certs" / "jwt-public.pem"
+    algorithm: str = "RS256"
+
+    # library-api/src/library_api/security/certs/jwt-private.pem    
+
+
 @dataclass(frozen=True, slots=True)
 class Config:
     web: WebConfig
     db: DatabaseConfig
+    auth_jwt: AuthJWTConfig = AuthJWTConfig()
+
